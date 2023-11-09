@@ -36,4 +36,33 @@ export class ApiService {
 
         return payload;
     }
+    async getAllPlanets(): Promise<AxiosResponse> {
+        const request = this.http
+            .get(`/planets`)
+            .pipe(map((res) => res.data))
+            .pipe(
+                catchError(() => {
+                    throw new ForbiddenException('API not available');
+                }),
+            );
+
+        const payload = await lastValueFrom(request);
+
+        return payload;
+    }
+
+    async getPlanetById(id:number): Promise<AxiosResponse> {
+        const request = this.http
+            .get(`/planets/${id}`)
+            .pipe(map((res) => res.data))
+            .pipe(
+                catchError(() => {
+                    throw new ForbiddenException('API not available');
+                }),
+            );
+
+        const payload = await lastValueFrom(request);
+
+        return payload;
+    }
 }

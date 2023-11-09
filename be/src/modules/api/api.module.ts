@@ -1,6 +1,6 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { BASE_URL } from '../common/consts';
+import { BASE_URL } from '../../common/consts';
 import { ApiController } from './api.controller';
 import { ApiService } from './api.service';
 
