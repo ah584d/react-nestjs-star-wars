@@ -1,18 +1,28 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Home } from '../pages/Home';
+import People from '../pages/People';
+import PeopleDetails from '../pages/PeopleDetails';
 import Planet from '../pages/Planet';
 
 const Routes = () => {
     const routes = [
         {
             path: '/',
-            // element: <ProtectedRoute />,
             children: [
                 {
                     path: '/',
-                    element: <div >hello</div>,
+                    element: <Home />,
                 },
                 {
-                    path: '/planets/:id',
+                    path: '/people',
+                    element: <People />,
+                },
+                {
+                    path: '/people/:id',
+                    element: <PeopleDetails />,
+                },
+                {
+                    path: '/planets',
                     element: <Planet />,
                 },
             ],
@@ -20,9 +30,7 @@ const Routes = () => {
     ];
 
     // Combine and conditionally include routes based on authentication status
-    const router = createBrowserRouter([
-        ...routes,
-    ]);
+    const router = createBrowserRouter([...routes]);
 
     return <RouterProvider router={router} />;
 };
