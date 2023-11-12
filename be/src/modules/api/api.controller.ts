@@ -8,8 +8,12 @@ export class ApiController {
 
     @Get('people')
     async getAllPersons(@Res() res: Response) {
-        const persons = await this.apiService.getAllPersons();
-        return res.status(HttpStatus.OK).send(persons);
+        try {
+            const persons = await this.apiService.getAllPersons();
+            return res.status(HttpStatus.OK).send(persons);
+        } catch (error) {
+            throw new HttpException('Internal error', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Get('people/:id')
@@ -24,8 +28,12 @@ export class ApiController {
 
     @Get('planets')
     async getAllPlanets(@Res() res: Response) {
-        const planets = await this.apiService.getAllPlanets();
-        return res.status(HttpStatus.OK).send(planets);
+        try {
+            const planets = await this.apiService.getAllPlanets();
+            return res.status(HttpStatus.OK).send(planets);
+        } catch (error) {
+            throw new HttpException('Internal error', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Get('planets/:id')

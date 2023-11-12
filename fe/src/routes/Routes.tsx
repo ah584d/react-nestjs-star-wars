@@ -29,7 +29,6 @@ const Routes = () => {
         },
     ];
 
-    // Combine and conditionally include routes based on authentication status
     const router = createBrowserRouter([...routes]);
 
     return <RouterProvider router={router} />;

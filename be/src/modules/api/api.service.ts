@@ -10,9 +10,10 @@ export class ApiService {
     async getAllPersons(): Promise<AxiosResponse> {
         const request = this.http
             .get(`/people`)
-            .pipe(map((res) => res.data))
+            // Use the `map` operator to extract data from the response
             .pipe(
-                catchError(() => {
+                map((res) => res.data),
+                catchError(() => {// handle errors within the observable chain
                     throw new ForbiddenException('API not available');
                 }),
             );
@@ -22,44 +23,38 @@ export class ApiService {
         return payload;
     }
 
-    async getPersonById(id:number): Promise<AxiosResponse> {
-        const request = this.http
-            .get(`/people/${id}`)
-            .pipe(map((res) => res.data))
-            .pipe(
-                catchError(() => {
-                    throw new ForbiddenException('API not available');
-                }),
-            );
+    async getPersonById(id: number): Promise<AxiosResponse> {
+        const request = this.http.get(`/people/${id}`).pipe(
+            map((res) => res.data),
+            catchError(() => {
+                throw new ForbiddenException('API not available');
+            }),
+        );
 
         const payload = await lastValueFrom(request);
 
         return payload;
     }
     async getAllPlanets(): Promise<AxiosResponse> {
-        const request = this.http
-            .get(`/planets`)
-            .pipe(map((res) => res.data))
-            .pipe(
-                catchError(() => {
-                    throw new ForbiddenException('API not available');
-                }),
-            );
+        const request = this.http.get(`/planets`).pipe(
+            map((res) => res.data),
+            catchError(() => {
+                throw new ForbiddenException('API not available');
+            }),
+        );
 
         const payload = await lastValueFrom(request);
 
         return payload;
     }
 
-    async getPlanetById(id:number): Promise<AxiosResponse> {
-        const request = this.http
-            .get(`/planets/${id}`)
-            .pipe(map((res) => res.data))
-            .pipe(
-                catchError(() => {
-                    throw new ForbiddenException('API not available');
-                }),
-            );
+    async getPlanetById(id: number): Promise<AxiosResponse> {
+        const request = this.http.get(`/planets/${id}`).pipe(
+            map((res) => res.data),
+            catchError(() => {
+                throw new ForbiddenException('API not available');
+            }),
+        );
 
         const payload = await lastValueFrom(request);
 

@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEggStore } from '../store/store';
 import styles from './pages.module.css';
 
 export const Home = (): ReactElement => {
