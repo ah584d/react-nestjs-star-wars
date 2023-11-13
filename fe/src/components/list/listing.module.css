@@ -1,0 +1,11 @@
+.flexContainer {
+    /* border: 1px solid black; */
+    display : flex;
+    flex-wrap: wrap;
+}
+
+.flexItem {
+    flex: 0 0 calc(33.33% - 16px);
+    margin: 8px;
+  }
+
