@@ -5,7 +5,7 @@ import { networkManager } from './network.service';
 
 export const getAllPeople = async (): Promise<ApiResponse<PeoplePayload>> => {
     try {
-        const url = `${ROUTES.ENTITIES.PEOPLE}`;
+        const url = `${ROUTES.ENTITIES.PEOPLE}?count=10&page=1`;
         const { data } = await networkManager.get<PeoplePayload>(url);
         return [null, data];
     } catch (error) {

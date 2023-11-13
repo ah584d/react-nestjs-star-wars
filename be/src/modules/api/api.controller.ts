@@ -1,4 +1,4 @@
-import { Controller, Get, HttpException, HttpStatus, Param, Res } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Param, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { ApiService } from './api.service';
 
@@ -7,9 +7,9 @@ export class ApiController {
     constructor(private apiService: ApiService) {}
 
     @Get('people')
-    async getAllPersons(@Res() res: Response) {
+    async getAllPersons(@Query('count') count: string, @Query('page') page: number, @Res() res: Response) {
         try {
-            const persons = await this.apiService.getAllPersons();
+            const persons = await this.apiService.getAllPersons(count, page);
             return res.status(HttpStatus.OK).send(persons);
         } catch (error) {
             throw new HttpException('Internal error', HttpStatus.INTERNAL_SERVER_ERROR);

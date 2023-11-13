@@ -32,7 +32,6 @@ const People = (): ReactElement => {
                 <>
                     <h2>{people?.count} People(s)</h2>
                     <div>
-                        {' '}
                         <Listing list={people?.results ?? []} />
                     </div>
                 </>
